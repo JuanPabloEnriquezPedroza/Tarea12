@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final Fantasy Random Characters</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <link rel="icon" type="image/png" href="https://ssb.wiki.gallery/images/c/ce/FinalFantasySymbol.svg" size="96 * 96" />
+
+</head>
+<body style="background-size: 100%; background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9ccd6fa5-7883-42f7-acb0-c5cd36997cdf/d4f8xbx-3556cd77-416f-4ec9-90fd-b81731d0cc86.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzljY2Q2ZmE1LTc4ODMtNDJmNy1hY2IwLWM1Y2QzNjk5N2NkZlwvZDRmOHhieC0zNTU2Y2Q3Ny00MTZmLTRlYzktOTBmZC1iODE3MzFkMGNjODYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ig_d9LmWDIP2kefQJc5K0OwbjJpv1ieIFsdh0aod2CM');">
+    <div class="container mt-2">
+      <div class="btn btn-dark d-flex flex-row justify-content-center mb-3" onclick="getMonster()">Click to get a random Final Fantasy character</div>
+      <div class="row margin">
+        <div class="col-sm-6">
+            <div id="img" class="container-fluid ratio ratio-1x1"></div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row margin">
+                <div id="name" class="p-3 text-light bg-dark">Name:</div>
+                <div id="gender" class="p-3 text-light bg-dark">Gender:</div>
+                <div id="race" class="p-3 text-light bg-dark">Race:</div>
+                <div id="height" class="p-3 text-light bg-dark">Height:</div>
+                <div id="weight" class="p-3 text-light bg-dark">Weight:</div>
+                <div id="age" class="p-3 text-light bg-dark">Age:</div>
+                <div id="job" class="p-3 text-light bg-dark">Job:</div>
+                <div id="origin" class="p-3 text-light bg-dark">Origin:</div>
+                <div id="description" class="p-3 text-light bg-dark">Description:</div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+<script type="text/javascript">
+    function getMonster()
+    {
+        var register = Math.floor(Math.random() * 278);
+        
+        fetch('https://www.moogleapi.com/api/v1/characters')
+          .then(response => response.json())
+          .then(data => {
+                            var imagen = document.createElement("img");
+                            document.getElementById("img").innerHTML = "";
+                            document.getElementById("img").appendChild(imagen);
+                            imagen.src = data[register].pictures[0].url;
+
+                            var nombre = document.createElement("name");
+                            document.getElementById("name").innerHTML = "";
+                            var texto = document.createTextNode("Name: " + data[register].name);
+                            document.getElementById("name").appendChild(texto);
+
+                            var genero = document.createElement("gender");
+                            document.getElementById("gender").innerHTML = "";
+                            var texto = document.createTextNode("Gender: " + data[register].gender);
+                            document.getElementById("gender").appendChild(texto);
+
+                            var raza = document.createElement("race");
+                            document.getElementById("race").innerHTML = "";
+                            var texto = document.createTextNode("Race: " + data[register].race);
+                            document.getElementById("race").appendChild(texto);
+
+                            var altura = document.createElement("height");
+                            document.getElementById("height").innerHTML = "";
+                            var texto = document.createTextNode("Height: " + data[register].height);
+                            document.getElementById("height").appendChild(texto);
+
+                            var peso = document.createElement("weight");
+                            document.getElementById("weight").innerHTML = "";
+                            var texto = document.createTextNode("Weight: " + data[register].weight);
+                            document.getElementById("weight").appendChild(texto);
+
+                            var edad = document.createElement("age");
+                            document.getElementById("age").innerHTML = "";
+                            var texto = document.createTextNode("Age: " + data[register].age);
+                            document.getElementById("age").appendChild(texto);
+
+                            var trabajo = document.createElement("job");
+                            document.getElementById("job").innerHTML = "";
+                            var texto = document.createTextNode("Job: " + data[register].job);
+                            document.getElementById("job").appendChild(texto);
+
+                            var origen = document.createElement("origin");
+                            document.getElementById("origin").innerHTML = "";
+                            var texto = document.createTextNode("Origin: " + data[register].origin);
+                            document.getElementById("origin").appendChild(texto);
+
+                            var descripcion = document.createElement("description");
+                            document.getElementById("description").innerHTML = "";
+                            var texto = document.createTextNode("Description: " + data[register].description);
+                            document.getElementById("description").appendChild(texto);
+                        })
+          .catch(() => window.alert("Error"));
+
+    }
+//document.getElementById("demo").innerHTML = "Paragraph changed!";
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+</body>
+</html>
